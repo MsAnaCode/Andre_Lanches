@@ -35,6 +35,9 @@ yarn-error.*
 .env*.local
 !.env.example
 
+# roteiro local da apresentacao (nao versionar)
+APRESENTACAO.md
+
 # typescript
 *.tsbuildinfo
 
