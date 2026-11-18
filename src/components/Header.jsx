@@ -10,10 +10,10 @@ const ABAS = ['Lanches', 'Sobre Nós', 'Contato'];
  * - Barra de navegação limpa com botões padronizados via Flexbox (Aula 11)
  * - Combinação condicional de estilos com array (Aula 10) e operador && (Aula 06)
  */
-export default function Header({ abaAtiva, onMudarAba, quantidadePedidos = 0 }) {
+export default function Header({ abaAtiva, onMudarAba, quantidadePedidos = 0, onAbrirCarrinho }) {
   return (
     <View style={styles.headerContainer}>
-      {/* Linha superior: Logo reduzida à esquerda + indicador de pedidos à direita */}
+      {/* Linha superior: Logo reduzida à esquerda + indicador/botão de pedidos à direita */}
       <View style={styles.topoLinha}>
         <View style={styles.marcaGrupo}>
           <Image source={IMAGENS_APP.logo} style={styles.logoImagem} resizeMode="contain" />
@@ -23,17 +23,17 @@ export default function Header({ abaAtiva, onMudarAba, quantidadePedidos = 0 }) 
           </View>
         </View>
 
-        {quantidadePedidos > 0 ? (
-          <View style={styles.badgePedidos}>
-            <Text style={styles.badgePedidosTexto}>
-              {quantidadePedidos} {quantidadePedidos === 1 ? 'pedido' : 'pedidos'}
-            </Text>
-          </View>
-        ) : (
-          <View style={styles.badgeAberto}>
-            <Text style={styles.badgeAbertoTexto}>ABERTO</Text>
-          </View>
-        )}
+        <TouchableOpacity
+          style={quantidadePedidos > 0 ? styles.badgePedidos : styles.badgeCarrinhoVazio}
+          onPress={onAbrirCarrinho}
+          activeOpacity={0.8}
+          accessibilityRole="button"
+          accessibilityLabel="Ver carrinho de pedidos"
+        >
+          <Text style={quantidadePedidos > 0 ? styles.badgePedidosTexto : styles.badgeCarrinhoVazioTexto}>
+            🛒 Carrinho{quantidadePedidos > 0 ? ` (${quantidadePedidos})` : ''}
+          </Text>
+        </TouchableOpacity>
       </View>
 
       {/* Barra de navegação padronizada com 3 abas */}
@@ -97,27 +97,28 @@ const styles = StyleSheet.create({
     color: '#5c3b00',
     fontWeight: '600',
   },
-  badgeAberto: {
-    backgroundColor: '#15803d',
-    paddingHorizontal: 10,
-    paddingVertical: 5,
+  badgeCarrinhoVazio: {
+    backgroundColor: '#ffffff',
+    paddingHorizontal: 11,
+    paddingVertical: 6,
     borderRadius: 999,
+    borderWidth: 1.5,
+    borderColor: '#e50021',
   },
-  badgeAbertoTexto: {
-    color: '#ffffff',
-    fontSize: 11,
+  badgeCarrinhoVazioTexto: {
+    color: '#e50021',
+    fontSize: 12,
     fontWeight: 'bold',
-    letterSpacing: 0.6,
   },
   badgePedidos: {
     backgroundColor: '#e50021',
-    paddingHorizontal: 10,
-    paddingVertical: 5,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
     borderRadius: 999,
   },
   badgePedidosTexto: {
     color: '#ffffff',
-    fontSize: 11,
+    fontSize: 12,
     fontWeight: 'bold',
   },
   barraNavegacao: {
