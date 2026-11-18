@@ -2,6 +2,12 @@
 
 Modernização completa do site estático original do **André Lanches** (`Site Lanches/`) para um aplicativo mobile multiplataforma (**iOS e Android**) desenvolvido em **React Native com Expo (JavaScript)**, com suporte opcional ao **Supabase** e modo local automático.
 
+## 👥 Desenvolvedores
+* **Ana Clara de Paulo Arantes Sousa**
+* **Carlos Eduardo Mendonça de Morais**
+
+> 📄 **Relatório Completo do Projeto:** Consulte o arquivo [`RELATORIO.md`](RELATORIO.md) para detalhes aprofundados sobre a arquitetura, desafios enfrentados e soluções adotadas.
+
 ---
 
 ## Estrutura do Projeto
